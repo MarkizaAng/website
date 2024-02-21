@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--  Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <style>
+        /* CSS style */
+        .centerContent {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="centerContent">
+        <!-- Display product name which were choosen -->
+        <h1 id="product">ITEM: <%=myMessage %>
+        </h1>
+        <!-- Display product description -->
+        <h2>Description: <%= description %>
+        </h2>
+        <!-- Display product price -->
+        <h2 id="price">
+            <%= myPrice %>
+        </h2>
+        <!-- Display product image -->
+        <img src="Images/<%= myImage%>" width="250px">
+        <br>
+        <!-- Select quantity of the product, how many product user wants to buy -->
+        <select id="quantity" name="quantity">
+            <option value="0">0</option>
+            <option value="1" selected>1</option> <!-- 1 is shown as default-->
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <br>
+        <!-- Button which adds product to cart -->
+        <button onclick="addToCart()">Add to Cart</button>
+        <br>
+        <!-- Reference on the home page -->
+        <a href="home">Back to home page</a>
+    </div>
+</body>
+
+</html>
+
+<script>
+    // Function to add product to cart
+    function addToCart() {
+        let product = document.getElementById("product").innerHTML;
+        let quantity = document.getElementById("quantity").value;
+        let price = document.getElementById("price").innerHTML;
+        let quan_price = { p: price, quan: quantity };
+        // adding information to local storage
+        localStorage.setItem(product, JSON.stringify(quan_price));
+    }
+</script>
